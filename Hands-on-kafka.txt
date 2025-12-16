@@ -1,0 +1,22 @@
+docker-compose up -d
+acceder le docker container : docker-compose exec kafka bash
+creation de topic : kafka-topics --create \
+	--topic my-first-topic \
+	--bootstrap-server localhost:9092 \
+	--partitions 1 \
+	--replication-factor 1
+copier le fichier transactions.csv dans le container :docker cp transactions.csv hands-on-kafka-kafka-1:/tmp/transactions.csv
+
+acceder au consumer au terminal 1: kafka-console-consumer \
+  --topic transactions \
+  --bootstrap-server localhost:9092 \
+  --from-beginning
+
+acceder au producer au terminal 2: kafka-console-producer \
+  --topic transactions \
+  --bootstrap-server localhost:9092 \
+
+afficher le continu de fichier csv producer a partir de consumer:
+ cat /tmp/transactions.csv | kafka-console-producer \
+  --topic transactions \
+  --bootstrap-server localhost:9092
