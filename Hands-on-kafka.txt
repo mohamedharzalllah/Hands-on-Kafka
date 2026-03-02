@@ -1,7 +1,7 @@
 docker-compose up -d
 acceder le docker container : docker-compose exec kafka bash
 creation de topic : kafka-topics --create \
-	--topic my-first-topic \
+	--topic part1-topic \
 	--bootstrap-server localhost:9092 \
 	--partitions 1 \
 	--replication-factor 1
